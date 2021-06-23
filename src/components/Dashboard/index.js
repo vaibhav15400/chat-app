@@ -5,6 +5,7 @@ import { Drawer, Button, Divider, Alert } from 'rsuite';
 import { useProfile } from '../../Context/ProfileContext';
 import { database } from '../../misc/firebase';
 import EditableInput from '../EditableInput';
+import AvatarUploadbtn from './AvatarUploadbtn';
 import ProviderBlock from './ProviderBlock';
 
 const Dashboard = ({ OnSignOut }) => {
@@ -39,6 +40,7 @@ const Dashboard = ({ OnSignOut }) => {
           onSave={onSave}
           label={<h6 className="mb-2">Nickname</h6>}
         />
+        <AvatarUploadbtn/>
       </Drawer.Body>
       <Drawer.Footer>
         <Button block color="red" onClick={OnSignOut}>
