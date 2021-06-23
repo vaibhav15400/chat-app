@@ -5,6 +5,7 @@ import ChatTop from '../../components/ChatWindow/top/index';
 import Messages from '../../components/ChatWindow/messages/index';
 import ChatBottom from '../../components/ChatWindow/Bottom/index';
 import { useRooms } from '../../Context/RoomContext';
+import { CurrentRoomProvider } from '../../Context/CurrentRoomContext';
 
 const Chat = () => {
   const { chatId } = useParams();
@@ -20,8 +21,15 @@ const Chat = () => {
     return <h6 className="text-center mt-page">chat {chatId} not found</h6>;
   }
 
+  const { name, desciption } = currentRoom;
+
+  const currentRoomData = {
+    name,
+    desciption,
+  };
+
   return (
-    <>
+    <CurrentRoomProvider data={currentRoomData}>
       <div className="chat-top">
         <ChatTop />
       </div>
@@ -31,7 +39,7 @@ const Chat = () => {
       <div className="chat-bottom">
         <ChatBottom />
       </div>
-    </>
+    </CurrentRoomProvider>
   );
 };
 
