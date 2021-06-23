@@ -2,6 +2,7 @@
 import React, { useState,useRef } from 'react'
 import { Modal,Button, Alert } from 'rsuite';
 import AvatarEditor from 'react-avatar-editor'
+import ProfileAvatar from './ProfileAvatar';
 import { useModalState } from '../../misc/CustomHooks';
 import { database, storage } from '../../misc/firebase';
 import { useProfile } from '../../Context/ProfileContext';
@@ -74,6 +75,7 @@ const AvatarUploadbtn = () => {
   }
   return (
     <div className='mt-3 text-center'>
+      <ProfileAvatar src={profile.avatar} name={profile.name} className='width-200 height-200 img-fullsize font-huge'/>
       
       <div>
 
