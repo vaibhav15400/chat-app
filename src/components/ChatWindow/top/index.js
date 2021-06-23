@@ -13,7 +13,7 @@ const Top = () => {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center">
-        <h4>
+        <h4 className="text-disappear d-flex align-items-center">
           <Icon
             icon="arrow-circle-left"
             size="2x"
