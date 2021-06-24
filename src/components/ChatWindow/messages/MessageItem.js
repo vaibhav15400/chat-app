@@ -9,7 +9,7 @@ import { useCurrentRoom } from '../../../Context/CurrentRoomContext';
 import IconBtnControl from './IconBtnControl';
 import { useMediaQuery } from '../../../misc/CustomHooks';
 
-const MessageItem = ({ message, handleAdmin, handlLike }) => {
+const MessageItem = ({ message, handleAdmin, handlLike, handleDelete }) => {
   const { author, createdAt, text, likes, likeCount } = message;
 
   const isMoblie = useMediaQuery('(max-width:992px)');
@@ -66,6 +66,14 @@ const MessageItem = ({ message, handleAdmin, handlLike }) => {
           onClick={() => handlLike(message.id)}
           badgeContent={likeCount}
         />
+        {isAuthor && (
+          <IconBtnControl
+            isVisible={canShowIcons}
+            iconName="close"
+            tooltip="Delete this Message"
+            onClick={() => handleDelete(message.id)}
+          />
+        )}
       </div>
       <div>
         <span className="world-break-all">{text}</span>
