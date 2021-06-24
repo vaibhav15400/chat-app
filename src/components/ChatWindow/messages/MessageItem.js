@@ -1,8 +1,8 @@
 import React from 'react';
 import TimeAgo from 'timeago-react';
 import ProfileInfoBtnModal from './ProfileInfoBtnModal';
-import ProfileAvatar from '../../Dashboard/ProfileAvatar';
 import Presence from '../../Presence';
+import ProfileAvatar from '../../Dashboard/ProfileAvatar';
 
 const MessageItem = ({ message }) => {
   const { author, createdAt, text } = message;

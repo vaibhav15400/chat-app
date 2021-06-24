@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Icon, ButtonToolbar } from 'rsuite';
 import { useCurrentRoom } from '../../../Context/CurrentRoomContext';
 import { useMediaQuery } from '../../../misc/CustomHooks';
+import EditRoomBtnDrawer from './EditRoomBtnDrawer';
 import RoomIndoBtnModal from './RoomIndoBtnModal';
 
 const Top = () => {
@@ -27,7 +28,9 @@ const Top = () => {
           />
           <span className="text-disappear">{name}</span>
         </h4>
-        <ButtonToolbar className="ws-nowrap"> todo</ButtonToolbar>
+        <ButtonToolbar className="ws-nowrap">
+          <EditRoomBtnDrawer />
+        </ButtonToolbar>
       </div>
 
       <div className="d-flex justify-content-between align-items-center">
