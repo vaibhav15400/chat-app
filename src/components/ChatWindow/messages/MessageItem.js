@@ -7,10 +7,12 @@ import ProfileAvatar from '../../Dashboard/ProfileAvatar';
 import { auth } from '../../../misc/firebase';
 import { useCurrentRoom } from '../../../Context/CurrentRoomContext';
 import IconBtnControl from './IconBtnControl';
-import { useMediaQuery } from '../../../misc/CustomHooks';
+import { useHover, useMediaQuery } from '../../../misc/CustomHooks';
 
 const MessageItem = ({ message, handleAdmin, handlLike, handleDelete }) => {
   const { author, createdAt, text, likes, likeCount } = message;
+
+  const [selfRef, isHovered] = useHover();
 
   const isMoblie = useMediaQuery('(max-width:992px)');
   const isAdmin = useCurrentRoom(v => v.isAdmin);
@@ -24,7 +26,10 @@ const MessageItem = ({ message, handleAdmin, handlLike, handleDelete }) => {
   const isLiked = likes && Object.keys(likes).includes(auth.currentUser.uid);
 
   return (
-    <li className="padded mb-1">
+    <li
+      className={`padded mb-1 cursor-pointer ${isHovered ? 'bg-black-02' : ''}`}
+      ref={selfRef}
+    >
       <div className="d-flex align-items-center font-bolder mb-1">
         <Presence uid={author.uid} />
         <ProfileAvatar
