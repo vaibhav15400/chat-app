@@ -9,7 +9,6 @@
     "rooms": {
       ".read": "auth!==null",
       ".write": "auth!==null",
-
       "$room_id": {
         ".read": "auth!==null",
         ".write": "auth!==null"
@@ -18,7 +17,6 @@
     "messages": {
       ".read": "auth!==null",
       ".write": "auth!==null",
-
       "$messages_id": {
         ".read": "auth!==null",
         ".write": "auth!==null"
@@ -26,7 +24,7 @@
     },
     "status": {
       "$user_id": {
-        ".read": "$user_id === auth.uid",
+        ".read": "auth!==null",
         ".write": "$user_id === auth.uid"
       }
     },

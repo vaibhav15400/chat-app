@@ -73,6 +73,7 @@ const AvatarUploadbtn = () => {
       );
       await database.ref().update(updates);
       setIsLoading(false);
+      close();
       Alert.info('avatar has been uploaded', 4000);
     } catch (error) {
       setIsLoading(false);
