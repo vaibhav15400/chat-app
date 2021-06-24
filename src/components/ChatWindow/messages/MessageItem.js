@@ -7,16 +7,21 @@ import ProfileAvatar from '../../Dashboard/ProfileAvatar';
 import { auth } from '../../../misc/firebase';
 import { useCurrentRoom } from '../../../Context/CurrentRoomContext';
 import IconBtnControl from './IconBtnControl';
+import { useMediaQuery } from '../../../misc/CustomHooks';
 
-const MessageItem = ({ message, handleAdmin }) => {
-  const { author, createdAt, text } = message;
+const MessageItem = ({ message, handleAdmin, handlLike }) => {
+  const { author, createdAt, text, likes, likeCount } = message;
 
+  const isMoblie = useMediaQuery('(max-width:992px)');
   const isAdmin = useCurrentRoom(v => v.isAdmin);
   const admins = useCurrentRoom(v => v.admins);
 
   const isMsgAuthorAdmins = admins.includes(author.uid);
   const isAuthor = auth.currentUser.uid === author.uid;
   const canGrantAdmin = isAdmin && !isAuthor;
+
+  const canShowIcons = isMoblie || 'hover';
+  const isLiked = likes && Object.keys(likes).includes(auth.currentUser.uid);
 
   return (
     <li className="padded mb-1">
@@ -54,12 +59,12 @@ const MessageItem = ({ message, handleAdmin }) => {
         />
 
         <IconBtnControl
-          {...(true ? { color: 'red' } : {})}
-          isVisible
+          {...(isLiked ? { color: 'red' } : {})}
+          isVisible={canShowIcons}
           iconName="heart"
           tooltip="Like this Message"
-          onClick={() => {}}
-          badgeContent={5}
+          onClick={() => handlLike(message.id)}
+          badgeContent={likeCount}
         />
       </div>
       <div>
